@@ -1,118 +1,302 @@
-/* Custom Properties voor consistentie */
+/* Reset & Variabelen */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 :root {
-    --primary-blue: #03a9f4;
-    --dark-blue: #095d6e;
-    --text-color: #46707f;
-    --heading-color: #17252a;
-    --white: #ffffff;
+  --primary-color: #0e2a47;
+  --text-main: #ffffff;
+  --text-muted: #888888;
+  --menu-bg: #152232;
 }
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    color: var(--text-color);
-    line-height: 1.6;
-    margin: 0;
+html, body {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #ffffff;
+  color: var(--text-main);
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+/* Volledig schermvullende layout */
+.app-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(rgba(14, 42, 71, 0.25), rgba(14, 42, 71, 0.35)), url('achtergrond.jpg') no-repeat center top;
+  background-size: cover;
 }
 
-/* Header & Nav */
-.site-header {
-    position: absolute;
-    width: 100%;
-    z-index: 10;
-    padding: 20px 0;
+/* Transparante Header */
+header {
+  width: 100%;
+  padding: clamp(16px, 3vh, 24px) 20px 10px 20px;
+  z-index: 100;
 }
 
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.logo a {
-    color: var(--white);
-    font-size: 24px;
-    font-weight: 600;
-    text-decoration: none;
+.logo-container {
+  text-decoration: none;
+  color: #ffffff;
 }
 
-.main-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
+.logo-title {
+  font-size: clamp(1.15rem, 3.8vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-.main-menu > li > a {
-    color: var(--white);
-    text-decoration: none;
-    padding: 10px 20px;
-    text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 600;
+.logo-subtitle {
+  font-size: clamp(1rem, 3.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.15;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* Hero Section */
-.hero {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    background: url('https://claritas.nu/wp-content/uploads/2019/10/cropped-architectural-design-architecture-building-443383-1-8.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--white);
+/* Hamburger Knop */
+.menu-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
 }
 
-.hero-overlay {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background-color: var(--dark-blue);
-    opacity: 0.31;
+.menu-toggle span {
+  display: block;
+  width: 26px;
+  height: 2.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+/* Centraal Contentblok */
+main.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.hero h1 {
-    font-size: 3.375em;
-    font-weight: 300;
-    margin-bottom: 10px;
+.hero-title {
+  font-size: clamp(2rem, 6.2vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  margin-bottom: clamp(10px, 2vh, 16px);
 }
 
-.lead {
-    font-size: 1.25em;
-    font-weight: 300;
-    margin-bottom: 30px;
+.hero-title .title-line {
+  display: block;
 }
 
-/* Button */
-.btn-primary {
-    display: inline-block;
-    padding: 15px 30px;
-    border: 2px solid var(--white);
-    border-radius: 50px;
-    color: var(--white);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 600;
-    transition: background 0.3s ease;
+.hero-subtitle {
+  font-size: clamp(1rem, 3.4vw, 1.4rem);
+  font-weight: 300;
+  color: #ffffff;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  margin-bottom: clamp(24px, 4.5vh, 40px);
 }
 
-.btn-primary:hover {
-    background: rgba(255,255,255,0.2);
+.cta-button {
+  display: inline-block;
+  padding: clamp(10px, 1.8vh, 13px) clamp(22px, 5vw, 32px);
+  background-color: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: clamp(0.85rem, 2.7vw, 0.95rem);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  backdrop-filter: blur(2px);
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-/* Footer */
-.site-footer {
-    background: #f4f4f4;
-    padding: 30px 0;
-    text-align: center;
+.cta-button:hover {
+  background-color: #ffffff;
+  color: var(--primary-color);
+}
+
+/* Footer onderaan hetzelfde scherm */
+footer {
+  width: 100%;
+  background-color: #ffffff;
+  padding: clamp(14px, 2.5vh, 22px) 20px clamp(12px, 2vh, 18px) 20px;
+  text-align: center;
+  border-top: none;
+  z-index: 10;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  margin-bottom: clamp(8px, 1.2vh, 14px);
+}
+
+.social-links a {
+  color: #333333;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.social-links a:hover {
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.social-links svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+.copyright {
+  font-size: clamp(0.65rem, 1.8vw, 0.72rem);
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Off-canvas Navigatie */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 998;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+  height: 100dvh;
+  background-color: var(--menu-bg);
+  color: #ffffff;
+  transition: right 0.3s ease;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px;
+  overflow-y: auto;
+}
+
+.nav-drawer.active {
+  right: 0;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 15px;
+}
+
+.drawer-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 4px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #72b2ff;
+}
+
+.sub-menu {
+  list-style: none;
+  padding-left: 16px;
+  padding-bottom: 10px;
+}
+
+.sub-link {
+  display: block;
+  padding: 6px 0;
+  color: #a7b7c7;
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+.sub-link:hover {
+  color: #ffffff;
+}
+
+.drawer-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
 }
