@@ -1,62 +1,422 @@
 <!DOCTYPE html>
-<html lang="nl-NL">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claritas Bemiddeling & Advies – Voor helderheid bij verzuim</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Claritas Bemiddeling & Advies – Voor helderheid bij verzuim</title>
+  <style>
+    /* Reset & Variabelen */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-color: #0e2a47;
+      --text-main: #ffffff;
+      --text-muted: #888888;
+      --menu-bg: #152232;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh; /* Voorkomt mobiele browser UI-springers */
+      overflow: hidden; /* Sluit elke verticale scrollbalk uit */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: #ffffff;
+      color: var(--text-main);
+    }
+
+    /* Volledig schermvullende layout */
+    .app-wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      /* Achtergrondafbeelding aan de bovenkant uitgelijnd */
+      background: linear-gradient(rgba(14, 42, 71, 0.25), rgba(14, 42, 71, 0.35)), url('achtergrond.jpg') no-repeat center top;
+      background-size: cover;
+    }
+
+    /* Transparante Header */
+    header {
+      width: 100%;
+      padding: clamp(16px, 3vh, 24px) 20px 10px 20px;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-container {
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .logo-title {
+      font-size: clamp(1.15rem, 3.8vw, 1.45rem);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.15;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo-subtitle {
+      font-size: clamp(1rem, 3.2vw, 1.25rem);
+      font-weight: 400;
+      line-height: 1.15;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Hamburger Knop */
+    .menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background-color: #ffffff;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Centraal Contentblok */
+    main.hero-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 6.2vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      margin-bottom: clamp(10px, 2vh, 16px);
+    }
+
+    .hero-title .title-line {
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 3.4vw, 1.4rem);
+      font-weight: 300;
+      color: #ffffff;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+      margin-bottom: clamp(24px, 4.5vh, 40px);
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: clamp(10px, 1.8vh, 13px) clamp(22px, 5vw, 32px);
+      background-color: transparent;
+      color: #ffffff;
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: clamp(0.85rem, 2.7vw, 0.95rem);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      backdrop-filter: blur(2px);
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .cta-button:hover {
+      background-color: #ffffff;
+      color: var(--primary-color);
+    }
+
+    /* Footer onderaan hetzelfde scherm */
+    footer {
+      width: 100%;
+      background-color: #ffffff;
+      padding: clamp(14px, 2.5vh, 22px) 20px clamp(12px, 2vh, 18px) 20px;
+      text-align: center;
+      border-top: none;
+      z-index: 10;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: clamp(8px, 1.2vh, 14px);
+    }
+
+    .social-links a {
+      color: #333333;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+      transform: translateY(-2px);
+    }
+
+    .social-links svg {
+      width: 19px;
+      height: 19px;
+      fill: currentColor;
+    }
+
+    .copyright {
+      font-size: clamp(0.65rem, 1.8vw, 0.72rem);
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* Off-canvas Navigatie */
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 998;
+    }
+
+    .nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .nav-drawer {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      height: 100%;
+      height: 100dvh;
+      background-color: var(--menu-bg);
+      color: #ffffff;
+      transition: right 0.3s ease;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 24px;
+      overflow-y: auto;
+    }
+
+    .nav-drawer.active {
+      right: 0;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 15px;
+    }
+
+    .drawer-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 4px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #72b2ff;
+    }
+
+    .sub-menu {
+      list-style: none;
+      padding-left: 16px;
+      padding-bottom: 10px;
+    }
+
+    .sub-link {
+      display: block;
+      padding: 6px 0;
+      color: #a7b7c7;
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+
+    .sub-link:hover {
+      color: #ffffff;
+    }
+
+    .drawer-footer {
+      margin-top: auto;
+      padding-top: 20px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.4);
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <nav class="container nav-container">
-            <div class="logo">
-                <a href="/">Claritas Bemiddeling & Advies</a>
-            </div>
-            
-            <ul class="main-menu">
-                <li class="has-submenu">
-                    <a href="/waarom">Waarom Claritas?</a>
-                    <ul class="submenu">
-                        <li><a href="/reacties-van-klanten">Reacties van klanten</a></li>
-                    </ul>
-                </li>
-                <li class="has-submenu">
-                    <a href="/diensten">Diensten</a>
-                    <ul class="submenu">
-                        <li><a href="/tarieven">Tarieven</a></li>
-                    </ul>
-                </li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li class="has-submenu">
-                    <a href="/">Home</a>
-                    <ul class="submenu">
-                        <li><a href="/av">Algemene voorwaarden</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="header-container">
+        <a href="index.html" class="logo-container">
+          <div class="logo-title">Claritas Bemiddeling &amp;</div>
+          <div class="logo-subtitle">Advies</div>
+        </a>
+        <button class="menu-toggle" id="menuOpen" aria-label="Menu openen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <div class="hero-overlay"></div>
-            <div class="container hero-content">
-                <h1>Claritas bemiddeling & Advies</h1>
-                <p class="lead">Voor helderheid bij verzuim</p>
-                <a href="/diensten" class="btn-primary">Kijk hier hoe ik daarbij kan helpen</a>
-            </div>
-        </section>
-        
-        </main>
+    <!-- Content in het midden -->
+    <main class="hero-content">
+      <h1 class="hero-title">
+        <span class="title-line">Claritas</span>
+        <span class="title-line">bemiddeling &amp; Advies</span>
+      </h1>
+      <p class="hero-subtitle">Voor helderheid bij verzuim</p>
+      <a href="diensten.html" class="cta-button">Kijk hier hoe ik daarbij kan helpen</a>
+    </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 Claritas Bemiddeling & Advies</p>
-        </div>
+    <!-- Footer -->
+    <footer>
+      <div class="social-links">
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.64a1.65 1.65 0 0 0-1.66 1.66 1.66 1.66 0 0 0 1.66 1.66 1.66 1.66 0 0 0 1.66-1.66 1.65 1.65 0 0 0-1.66-1.66Z"/></svg>
+        </a>
+        <a href="mailto:info@claritas.nu" aria-label="E-mail">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+        <a href="https://wa.me/" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.63c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.03-1.25-.75-.67-1.26-1.5-1.41-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.12-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.44.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.17-.48-.29z"/></svg>
+        </a>
+        <a href="tel:+31600000000" aria-label="Telefoon">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        </a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright Claritas 2026. Alle rechten voorbehouden.
+      </div>
     </footer>
+  </div>
 
+  <!-- Off-canvas navigatiepaneel -->
+  <div class="nav-overlay" id="navOverlay"></div>
+  <aside class="nav-drawer" id="navDrawer">
+    <div class="drawer-header">
+      <div class="drawer-title">Claritas Bemiddeling &amp; Advies</div>
+      <button class="close-btn" id="menuClose" aria-label="Sluit menu">&times;</button>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Home <span>&rsaquo;</span></a>
+        <ul class="sub-menu">
+          <li><a href="algemene-voorwaarden.html" class="sub-link">Algemene voorwaarden</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="waarom.html" class="nav-link">Waarom Claritas? <span>&rsaquo;</span></a>
+        <ul class="sub-menu">
+          <li><a href="reacties-van-klanten.html" class="sub-link">Reacties van klanten</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="diensten.html" class="nav-link">Diensten <span>&rsaquo;</span></a>
+        <ul class="sub-menu">
+          <li><a href="tarieven.html" class="sub-link">Tarieven</a></li>
+        </ul>
+      </li>
+      <li class="nav-item">
+        <a href="blog.html" class="nav-link">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a href="contact.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+    <div class="drawer-footer">
+      &copy; 2026 Claritas Bemiddeling &amp; Advies
+    </div>
+  </aside>
+
+  <script>
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    const navDrawer = document.getElementById('navDrawer');
+    const navOverlay = document.getElementById('navOverlay');
+
+    function openMenu() {
+      navDrawer.classList.add('active');
+      navOverlay.classList.add('active');
+    }
+
+    function closeMenu() {
+      navDrawer.classList.remove('active');
+      navOverlay.classList.remove('active');
+    }
+
+    menuOpen.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    navOverlay.addEventListener('click', closeMenu);
+  </script>
 </body>
 </html>
